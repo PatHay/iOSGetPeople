@@ -10,7 +10,10 @@ import UIKit
 
 class FilmViewController: UITableViewController {
 
-    var films: [String]=[]
+    var titles: [String]=[]
+    var release: [String]=[]
+    var director: [String]=[]
+    var opening: [String]=[]
     
     
     override func viewDidLoad() {
@@ -23,7 +26,10 @@ class FilmViewController: UITableViewController {
                     if let results = jsonResult["results"] as? NSArray {
                         for film in results {
                             let filmDict = film as! NSDictionary
-                            self.films.append(filmDict["title"]! as! String)
+                            self.titles.append(filmDict["title"]! as! String)
+                            self.release.append(filmDict["release_date"]! as! String)
+                            self.director.append(filmDict["director"]! as! String)
+                            self.opening.append(filmDict["opening_crawl"]! as! String)
                         }
                     }
                 }
@@ -75,13 +81,13 @@ class FilmViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return films.count
+        return titles.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath)
         // set the default cell label to the corresponding element in the people array
-        cell.textLabel?.text = films[indexPath.row]
+        cell.textLabel?.text = titles[indexPath.row]
         // return the cell so that it can be rendered
         return cell
     }
@@ -90,6 +96,31 @@ class FilmViewController: UITableViewController {
         super.viewWillAppear(animated)
         print("FilmViewController will appear")
     }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+//        print("Helllloooooo")
+        performSegue(withIdentifier: "filmDetailSegue", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "filmDetailSegue" {
+            
+            let filmDetailViewController = segue.destination as! FilmDetailViewController
+            
+            if let indexPath = sender as? NSIndexPath{
+                let title = titles[indexPath.row]
+                let releaseDate = release[indexPath.row]
+                let direct = director[indexPath.row]
+                let openingCrawl = opening[indexPath.row]
+                filmDetailViewController.movieTitle = title
+                filmDetailViewController.release = releaseDate
+                filmDetailViewController.director = direct
+                filmDetailViewController.openingCrawl = openingCrawl
+            }
+        }
+    }
+    
+
     
 
 }

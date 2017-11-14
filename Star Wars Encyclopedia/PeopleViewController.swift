@@ -11,6 +11,9 @@ import UIKit
 class PeopleViewController: UITableViewController {
     
     var people: [String] = []
+    var gender: [String] = []
+    var birthday: [String] = []
+    var mass: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,9 @@ class PeopleViewController: UITableViewController {
                         for person in results {
                             let personDict = person as! NSDictionary
                             self.people.append(personDict["name"]! as! String)
+                            self.gender.append(personDict["gender"]! as! String)
+                            self.birthday.append(personDict["birth_year"]! as! String)
+                            self.mass.append(personDict["mass"]! as! String)
                         }
                     }
                 }
@@ -96,9 +102,9 @@ class PeopleViewController: UITableViewController {
     }
     
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return people.count
@@ -112,5 +118,47 @@ class PeopleViewController: UITableViewController {
         return cell
     }
     
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        print("Selected")
+//    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        print("Helllloooooo")
+        performSegue(withIdentifier: "PersonDetailSegue", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PersonDetailSegue" {
+        
+            let detailViewController = segue.destination as! DetailViewController
+            
+            if let indexPath = sender as? NSIndexPath{
+                let name = people[indexPath.row]
+                let sex = gender[indexPath.row]
+                let bday = birthday[indexPath.row]
+                let weight = mass[indexPath.row]
+                detailViewController.name = name
+                detailViewController.gender = sex
+                detailViewController.birthday = bday
+                detailViewController.mass = weight
+            }
+        }
+    }
+    
+    
+    
+    //detail controller delegate
+    
+
+    
 }
+
+//extension PeopleViewController: PersonDetailDelegate{
+//
+//    func cancelButtonPressed(by controller: DetailViewController){
+//        print("I am dismissing")
+//        dismiss(animated: true, completion: nil)
+//    }
+//}
 
