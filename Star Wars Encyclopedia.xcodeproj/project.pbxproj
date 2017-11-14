@@ -15,6 +15,7 @@
 		87C9D8F11FBA61ED0091F8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87C9D8EF1FBA61ED0091F8F7 /* LaunchScreen.storyboard */; };
 		87C9D8FC1FBA61ED0091F8F7 /* Star_Wars_EncyclopediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C9D8FB1FBA61ED0091F8F7 /* Star_Wars_EncyclopediaTests.swift */; };
 		87C9D9071FBA61ED0091F8F7 /* Star_Wars_EncyclopediaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C9D9061FBA61ED0091F8F7 /* Star_Wars_EncyclopediaUITests.swift */; };
+		87C9D9151FBB45B70091F8F7 /* FilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C9D9141FBB45B70091F8F7 /* FilmViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		87C9D9021FBA61ED0091F8F7 /* Star Wars EncyclopediaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Star Wars EncyclopediaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C9D9061FBA61ED0091F8F7 /* Star_Wars_EncyclopediaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star_Wars_EncyclopediaUITests.swift; sourceTree = "<group>"; };
 		87C9D9081FBA61ED0091F8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87C9D9141FBB45B70091F8F7 /* FilmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				87C9D8E31FBA61ED0091F8F7 /* AppDelegate.swift */,
 				87C9D8E51FBA61ED0091F8F7 /* PeopleViewController.swift */,
 				87C9D8E71FBA61ED0091F8F7 /* Main.storyboard */,
+				87C9D9141FBB45B70091F8F7 /* FilmViewController.swift */,
 				87C9D8ED1FBA61ED0091F8F7 /* Assets.xcassets */,
 				87C9D8EF1FBA61ED0091F8F7 /* LaunchScreen.storyboard */,
 				87C9D8F21FBA61ED0091F8F7 /* Info.plist */,
@@ -264,6 +267,7 @@
 			files = (
 				87C9D8E61FBA61ED0091F8F7 /* PeopleViewController.swift in Sources */,
 				87C9D8E41FBA61ED0091F8F7 /* AppDelegate.swift in Sources */,
+				87C9D9151FBB45B70091F8F7 /* FilmViewController.swift in Sources */,
 				87C9D8EC1FBA61ED0091F8F7 /* Star_Wars_Encyclopedia.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

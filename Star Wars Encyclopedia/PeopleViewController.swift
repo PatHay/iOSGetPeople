@@ -64,6 +64,12 @@ class PeopleViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("PeopleViewController will appear")
+    }
+    
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
