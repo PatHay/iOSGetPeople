@@ -16,28 +16,49 @@ class FilmViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = URL(string: "http://swapi.co/api/films/")
-        
-        let session = URLSession.shared
-
-        let task = session.dataTask(with: url!, completionHandler: {
-            data, response, error in
-            do{
+        StarWarsModel.getAllFilms(completionHandler: {data, response, error in
+            do {
+                //Try convering the JSON object to "Foundation Types" (NSDictionary, NSArray, NSString, etc.)
                 if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
-                    if let results = jsonResult["results"] as? NSArray { //casting results from JSON into an array object
-                        for film in results { //iterating through all results received
-                            let filmDict = film as! NSDictionary // making filmdict a variable to hold each iteration which is cast as a dictionary object
-                            self.films.append(filmDict["title"]! as! String) //appending films to films array, cast as a string
-                            
+                    if let results = jsonResult["results"] as? NSArray {
+                        for film in results {
+                            let filmDict = film as! NSDictionary
+                            self.films.append(filmDict["title"]! as! String)
                         }
                     }
                 }
-                self.tableView.reloadData()
-            }catch{
-                print(error)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } catch {
+                print("Something went wrong")
             }
         })
-        task.resume()
+        
+        
+//        let url = URL(string: "http://swapi.co/api/films/")
+//
+//        let session = URLSession.shared
+
+//        let task = session.dataTask(with: url!, completionHandler: {
+//            data, response, error in
+//            do{
+//                if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
+//                    if let results = jsonResult["results"] as? NSArray { //casting results from JSON into an array object
+//                        for film in results { //iterating through all results received
+//                            let filmDict = film as! NSDictionary // making filmdict a variable to hold each iteration which is cast as a dictionary object
+//                            self.films.append(filmDict["title"]! as! String) //appending films to films array, cast as a string
+//                        }
+//                    }
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                    }
+//                }
+//            }catch{
+//                print(error)
+//            }
+//        })
+//        task.resume()
     }
 
     override func didReceiveMemoryWarning() {
